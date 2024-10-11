@@ -1,9 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
-import firebase, {firebaseConfig} from './firebase';
+import  { app, getAppURL } from './firebase';
 import { useEffect } from 'react';
 
-const app = firebase.initializeApp(firebaseConfig);
 console.log("App.js initializing, App: %o",app);
 
 
@@ -19,7 +18,7 @@ function App() {
   useEffect(() => {
     console.log("App.js useEffect[app], App: %o",app);
     // Retrieve the URL from the configuration
-    const appURL = `https://${firebaseConfig.authDomain || `${firebaseConfig.projectId}.web.app`}`;
+    const appURL = getAppURL();
     console.log("Firebase App URL:", appURL);
   }, []);
 
@@ -27,9 +26,9 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p id="app-text">
-          ${!!app && (<p><b>${app?.name} | ${app?.authDomain}</b> is initialized!</p>)}
-        </p>
+        <div id="app-text">
+          ${!!app && (<div><b>${app?.name} | ${app?.authDomain}</b> is initialized!</div>)}
+        </div>
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>

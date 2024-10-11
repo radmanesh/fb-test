@@ -9,11 +9,14 @@
 
 const {onRequest} = require("firebase-functions/v2/https");
 const logger = require("firebase-functions/logger");
+const { defineString } = require("firebase-functions/params");
 
 // Create and deploy your first functions
 // https://firebase.google.com/docs/functions/get-started
 
-// exports.helloWorld = onRequest((request, response) => {
-//   logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
+const client_Secret = defineString("Client_Secret");
+
+exports.helloWorld = onRequest((request, response) => {
+  logger.info("Hello logs!", {structuredData: true, Client_Secret: client_Secret?.value() });
+  response.send("Hello from Firebase!");
+});

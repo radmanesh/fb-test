@@ -1,14 +1,25 @@
-import firebase from 'firebase/app';
-import 'firebase/firestore';
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+import { getFunctions } from "firebase/functions";
 
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_AUTH_DOMAIN",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_STORAGE_BUCKET",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyDAXpJuOiwZwPjHLLI9iCP2vsdCQiDx9kg",
+  authDomain: "testing-929ad.firebaseapp.com",
+  projectId: "testing-929ad",
+  storageBucket: "testing-929ad.appspot.com",
+  messagingSenderId: "722296668770",
+  appId: "1:722296668770:web:ad65c73538157e2c4b073b"
 };
 
-export default firebase;
-export { firebaseConfig };
+// Initialize Firebase app with the configuration
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const functions = getFunctions(app);
+
+const getAppURL = () => {
+  // Retrieve the URL from the configuration
+  return `https://${firebaseConfig.authDomain || `${firebaseConfig.projectId}.web.app`}`;
+};
+
+// Export the initialized Firebase app
+export { app, db, functions, getAppURL };

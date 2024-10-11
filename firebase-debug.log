@@ -1,0 +1,34 @@
+[debug] [2024-10-11T01:11:30.755Z] ----------------------------------------------------------------------
+[debug] [2024-10-11T01:11:30.763Z] Command:       /Users/armanrad/.nvm/versions/node/v22.9.0/bin/node /Users/armanrad/.nvm/versions/node/v22.9.0/bin/firebase deploy
+[debug] [2024-10-11T01:11:30.763Z] CLI Version:   13.22.0
+[debug] [2024-10-11T01:11:30.763Z] Platform:      darwin
+[debug] [2024-10-11T01:11:30.763Z] Node Version:  v22.9.0
+[debug] [2024-10-11T01:11:30.763Z] Time:          Thu Oct 10 2024 20:11:30 GMT-0500 (Central Daylight Time)
+[debug] [2024-10-11T01:11:30.764Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-10-11T01:11:30.815Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-10-11T01:11:30.815Z] > authorizing via signed-in user (radmanesh@gmail.com)
+[debug] [2024-10-11T01:11:30.815Z] [iam] checking project testing-929ad for permissions ["cloudconfig.configs.get","cloudconfig.configs.update","cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2024-10-11T01:11:30.816Z] Checked if tokens are valid: true, expires at: 1728611945857
+[debug] [2024-10-11T01:11:30.816Z] Checked if tokens are valid: true, expires at: 1728611945857
+[debug] [2024-10-11T01:11:30.816Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/testing-929ad:testIamPermissions [none]
+[debug] [2024-10-11T01:11:30.817Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/testing-929ad:testIamPermissions x-goog-quota-user=projects/testing-929ad
+[debug] [2024-10-11T01:11:30.817Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/testing-929ad:testIamPermissions {"permissions":["cloudconfig.configs.get","cloudconfig.configs.update","cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2024-10-11T01:11:31.007Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/testing-929ad:testIamPermissions 200
+[debug] [2024-10-11T01:11:31.008Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/testing-929ad:testIamPermissions {"permissions":["cloudconfig.configs.get","cloudconfig.configs.update","cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2024-10-11T01:11:31.008Z] Checked if tokens are valid: true, expires at: 1728611945857
+[debug] [2024-10-11T01:11:31.008Z] Checked if tokens are valid: true, expires at: 1728611945857
+[debug] [2024-10-11T01:11:31.008Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/testing-929ad/serviceAccounts/testing-929ad@appspot.gserviceaccount.com:testIamPermissions [none]
+[debug] [2024-10-11T01:11:31.008Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/testing-929ad/serviceAccounts/testing-929ad@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2024-10-11T01:11:31.153Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/testing-929ad/serviceAccounts/testing-929ad@appspot.gserviceaccount.com:testIamPermissions 200
+[debug] [2024-10-11T01:11:31.153Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/testing-929ad/serviceAccounts/testing-929ad@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2024-10-11T01:11:31.154Z] Checked if tokens are valid: true, expires at: 1728611945857
+[debug] [2024-10-11T01:11:31.154Z] Checked if tokens are valid: true, expires at: 1728611945857
+[debug] [2024-10-11T01:11:31.154Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/testing-929ad [none]
+[debug] [2024-10-11T01:11:31.282Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/testing-929ad 200
+[debug] [2024-10-11T01:11:31.283Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/testing-929ad {"projectId":"testing-929ad","projectNumber":"722296668770","displayName":"testing","name":"projects/testing-929ad","resources":{"hostingSite":"testing-929ad"},"state":"ACTIVE","etag":"1_bc74ea47-80e1-49cf-9153-a5fbf18d4f16"}
+[info] 
+[info] === Deploying to 'testing-929ad'...
+[info] 
+[info] i  deploying firestore, functions, hosting, remoteconfig 
+[info] Running command: npm --prefix "$RESOURCE_DIR" run lint

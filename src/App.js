@@ -1,11 +1,35 @@
 import logo from './logo.svg';
 import './App.css';
+import firebase, {firebaseConfig} from './firebase';
+import { useEffect } from 'react';
 
+const app = firebase.initializeApp(firebaseConfig);
+console.log("App.js initializing, App: %o",app);
+
+
+/**
+ * App Component
+ * @returns {JSX.Element}
+ * @constructor
+ * @see https://reactjs.org/docs/hooks-effect.html
+ */
 function App() {
+
+  // on mount run once
+  useEffect(() => {
+    console.log("App.js useEffect[app], App: %o",app);
+    // Retrieve the URL from the configuration
+    const appURL = `https://${firebaseConfig.authDomain || `${firebaseConfig.projectId}.web.app`}`;
+    console.log("Firebase App URL:", appURL);
+  }, []);
+
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
+        <p id="app-text">
+          ${!!app && (<p><b>${app?.name} | ${app?.authDomain}</b> is initialized!</p>)}
+        </p>
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>

@@ -1,70 +1,120 @@
-# Getting Started with Create React App
+# Firebase with Create React Project
+This project was bootstrapped with [Create React App](npx create-react-app fb-test).
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Firebase Setup
 
-In the project directory, you can run:
+### Firebase Firestore
+1. Create a new Firestore database in the Firebase Console.
+2. Create a collection called "items".
+3. Add a document to the "items" collection with a field called "name".
+4. Create a new file in the src folder called firebase.js.
 
-### `npm start`
+### Firebase Cli and WebApp Setup
+1. Install Firebase CLI.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```bash
+npm install -g firebase-tools
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+2. Create a new project in Firebase Console.
+3. Create firestore and hosting(Add a web app to the project) in the Firebase Console.
+4. Login to Firebase in the terminal.
+```bash
+firebase login
+```
 
-### `npm test`
+5. Initialize Firebase in the project.
+    - If you are using React Router, make sure to rewrite all routes to index.html.
+    - Add the build folder to the public directory in firebase.json.
+    - Select functions and hosting in the Firebase CLI. I selected javascript for the functions.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+firebase init
+```
 
-### `npm run build`
+6. Select Firestore, Functions, and Hosting.
+    - Item 1
+    - Item 2
+7. Copy the Firebase config object.
+```javascript
+// Your web app\'s Firebase configuration
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_AUTH_DOMAIN",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_STORAGE_BUCKET",
+  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+  appId: "YOUR_APP_ID"
+};
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+8. Create a new file in the src folder called firebase.js.
+9. Paste the Firebase config object into the firebase.js file.
+```javascript
+import firebase from 'firebase/app';
+import 'firebase/firestore';
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_AUTH_DOMAIN",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_STORAGE_BUCKET",
+  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+  appId: "YOUR_APP_ID"
+};
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+export default firebase;
+export {firebaseConfig};
+```
 
-### `npm run eject`
+10. Import firebase into the App.js file.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```javascript
+import firebase, {firebaseConfig} from './firebase';
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+11. Initialize Firebase in the App.js file.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```javascript
+const app = firebase.initializeApp(firebaseConfig);
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+12. Now App.js should look like this.
 
-## Learn More
+```javascript
+import React, {useState, useEffect} from 'react';
+import firebase, {firebaseConfig} from './firebase';
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+const app = firebase.initializeApp(firebaseConfig);
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+function App() {
+  return (
+    <div className="App">
+        <p id="app-text">
+          ${app.name} is initialized!
+        </p>
+    </div>
+  );
+}
 
-### Code Splitting
+export default App;
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Firebase Deployment
 
-### Analyzing the Bundle Size
+1. After doing all the steps above, build the project.
+```bash
+npm run build
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+2. If it ends successfully, then the project should be ready to deploy to Firebase.
+```bash
+firebase deploy
+```
 
-### Making a Progressive Web App
+**You should be able to see the address to the hosted website in the terminal after the deployment is complete.**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

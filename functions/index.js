@@ -9,14 +9,27 @@
 
 const {onRequest} = require("firebase-functions/v2/https");
 const logger = require("firebase-functions/logger");
-const { defineString } = require("firebase-functions/params");
+// eslint-disable-next-line object-curly-spacing
+const { defineString, defineSecret } = require("firebase-functions/params");
 
 // Create and deploy your first functions
 // https://firebase.google.com/docs/functions/get-started
 
-const client_Secret = defineString("Client_Secret");
+const clientId = defineString("CLIENT_ID");
+const clientSecret = defineSecret("CLIENT_SECRET");
 
-exports.helloWorld = onRequest((request, response) => {
-  logger.info("Hello logs!", {structuredData: true, Client_Secret: client_Secret?.value() });
-  response.send("Hello from Firebase!");
-});
+
+exports.helloWorld = onRequest(
+    {secrets: [clientSecret]},
+    (request, response) => {
+      try {
+        logger.info("Hello logs!", {structuredData: true, CLIENT_ID: clientId?.value()});
+        logger.info("Client Secret: %o", clientSecret?.value());
+      } catch (error) {
+        logger.error(error);
+      }
+      logger.info("Hello logs!", {structuredData: true, Client_Secret: clientId?.value()});
+      const res = `Client Secret: ${clientSecret?.value()} | Client ID: ${clientId?.value()}`;
+      response.send(res);
+    },
+);
